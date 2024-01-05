@@ -1,9 +1,17 @@
 "use client";
 
 import { Player } from "@remotion/player";
+
+//import { PageRow } from "../components/1-PageRow";
+import { PlayerBin }  from "../components/2-PlayerBin";
+import { OutlineBin } from "../components/3-OutlineBin";
+import { ControlBin } from "../components/4-ControlBin";
+
+
+import useWindowDimensions from "../components/6-WindowDims";
+
 import type { NextPage } from "next";
 import React, { useMemo, useState } from "react";
-import { Main } from "../remotion/MyComp/Main";
 import {
   CompositionProps,
   defaultMyCompProps,
@@ -13,9 +21,6 @@ import {
   VIDEO_WIDTH,
 } from "../types/constants";
 import { z } from "zod";
-import { RenderControls } from "../components/RenderControls";
-import { Tips } from "../components/Tips/Tips";
-import { Spacing } from "../components/Spacing";
 
 const container: React.CSSProperties = {
   maxWidth: 768,
@@ -23,55 +28,80 @@ const container: React.CSSProperties = {
   marginBottom: 20,
 };
 
-const outer: React.CSSProperties = {
-  borderRadius: "var(--geist-border-radius)",
-  overflow: "hidden",
-  boxShadow: "0 0 200px rgba(0, 0, 0, 0.15)",
-  marginBottom: 40,
-  marginTop: 60,
+const b1: React.CSSProperties = {
+  width: 540,
+  color: "white",
 };
 
-const player: React.CSSProperties = {
-  width: "100%",
+const b2: React.CSSProperties = {
+  width: 270,
+  color: "white",
+};
+
+const b3: React.CSSProperties = {
+  width: 300,
+  color: "white",
 };
 
 const Home: NextPage = () => {
-  const [text, setText] = useState<string>(defaultMyCompProps.title);
+  const [scale1_l2, setNum1] = useState<number>(defaultMyCompProps.scale1);
+  const [translateX1_l2, setNum2] = useState<number>(defaultMyCompProps.translateX1);
+  const [translateY1_l2, setNum3] = useState<number>(defaultMyCompProps.translateY1);
+  const [scale2_l2, setNum4] = useState<number>(defaultMyCompProps.scale2);
+  const [translateX2_l2, setNum5] = useState<number>(defaultMyCompProps.translateX2);
+  const [translateY2_l2, setNum6] = useState<number>(defaultMyCompProps.translateY2);
+  const [clipIndex_l2, setNum7] = useState<number>(defaultMyCompProps.clipIndex);
+  const [gOpacity_l2, setNum8] = useState<number>(defaultMyCompProps.gOpacity);
 
   const inputProps: z.infer<typeof CompositionProps> = useMemo(() => {
     return {
-      title: text,
+      scale1: scale1_l2,
+      translateX1: translateX1_l2,
+      translateY1: translateY1_l2,
+      scale2: scale2_l2,
+      translateX2: translateX2_l2,
+      translateY2: translateY2_l2,
+      clipIndex: clipIndex_l2,
+      gOpacity: gOpacity_l2,
     };
-  }, [text]);
+  }, [
+    scale1_l2, 
+    translateX1_l2, 
+    translateY1_l2,
+    scale2_l2, 
+    translateX2_l2, 
+    translateY2_l2,
+    clipIndex_l2,
+    gOpacity_l2,
+  ]);
 
   return (
-    <div>
-      <div style={container}>
-        <div className="cinematics" style={outer}>
-          <Player
-            component={Main}
-            inputProps={inputProps}
-            durationInFrames={DURATION_IN_FRAMES}
-            fps={VIDEO_FPS}
-            compositionHeight={VIDEO_HEIGHT}
-            compositionWidth={VIDEO_WIDTH}
-            style={player}
-            controls
-            autoPlay
-            loop
-          />
-        </div>
-        <RenderControls
-          text={text}
-          setText={setText}
-          inputProps={inputProps}
-        ></RenderControls>
-        <Spacing></Spacing>
-        <Spacing></Spacing>
-        <Spacing></Spacing>
-        <Spacing></Spacing>
-        <Tips></Tips>
-      </div>
+    <div> 
+
+        <table style={{
+          margin: "auto",
+        }}>
+            <tbody>
+              <tr style={{
+                height: useWindowDimensions().height,
+              }}>
+
+                <td style={b1}> {/* Column 1 - Player */}
+                    <PlayerBin setNum={setNum7} inputProps={inputProps}></PlayerBin>
+                </td>
+
+                <td style={b2}> {/* Column 2 - Outline of Clips */}
+                    <OutlineBin clipIndex={clipIndex_l2} setNum={setNum7}></OutlineBin>
+                </td>
+
+                <td style={b3}> {/* Column 3 - Controls for Player */}
+                  {/* GREAT ORGANIZATION - THIS IS WHERE A PROBLEM IS */}
+                  <ControlBin inputProps={inputProps} setNum1={setNum1} setNum2={setNum2} setNum3={setNum3} setNum4={setNum4} setNum5={setNum5} setNum6={setNum6} setNum8={setNum8}></ControlBin>
+                </td>
+
+              </tr>
+            </tbody>
+        </table>
     </div>
   );
 };
