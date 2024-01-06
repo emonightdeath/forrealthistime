@@ -1,4 +1,3 @@
-import { stat } from "fs";
 import React, {useCallback, useEffect, useRef} from "react";
 import { useVideoConfig, AbsoluteFill, Video, staticFile } from "remotion";
 
