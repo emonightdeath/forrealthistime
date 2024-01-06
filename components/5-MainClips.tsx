@@ -59,7 +59,7 @@ export const Main1 = ({
             color: "black",
           }}>
             <p>Welcome!</p>
-            <p>Press Play or 'Spacebar'</p>
+            <p>Press Play or Spacebar</p>
           </div>
         </AbsoluteFill>
 
