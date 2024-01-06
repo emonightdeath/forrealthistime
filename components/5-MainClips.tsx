@@ -2,7 +2,6 @@ import { z } from "zod";
 import {
   AbsoluteFill,
   Audio,
-  Video,
   Img,
   Sequence,
   useCurrentFrame,
