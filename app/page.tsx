@@ -1,7 +1,5 @@
 "use client";
 
-import { Player } from "@remotion/player";
-
 //import { PageRow } from "../components/1-PageRow";
 import { PlayerBin }  from "../components/2-PlayerBin";
 import { OutlineBin } from "../components/3-OutlineBin";
