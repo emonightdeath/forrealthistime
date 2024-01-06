@@ -12,19 +12,9 @@ import type { NextPage } from "next";
 import React, { useMemo, useState } from "react";
 import {
   CompositionProps,
-  defaultMyCompProps,
-  DURATION_IN_FRAMES,
-  VIDEO_FPS,
-  VIDEO_HEIGHT,
-  VIDEO_WIDTH,
+  defaultMyCompProps
 } from "../types/constants";
 import { z } from "zod";
-
-const container: React.CSSProperties = {
-  maxWidth: 768,
-  margin: "auto",
-  marginBottom: 20,
-};
 
 const b1: React.CSSProperties = {
   width: 540,
