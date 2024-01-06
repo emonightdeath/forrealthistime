@@ -1,6 +1,5 @@
 import { z } from "zod";
 export const COMP_NAME = "MyComp";
-import React, {useState} from "react";
 
 export const CompositionProps = z.object({
   scale1: z.number(),
