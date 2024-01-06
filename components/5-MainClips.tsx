@@ -5,8 +5,7 @@ import {
   Img,
   Sequence,
   useCurrentFrame,
-  staticFile,
-  interpolate,
+  interpolate
 } from "remotion";
 import { CompositionProps } from "../types/constants";
 import { loadFont } from "@remotion/google-fonts/Inter";
